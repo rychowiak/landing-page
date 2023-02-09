@@ -14,7 +14,7 @@ const projectVariant = {
   visible: { opacity: 1, scale: 1 },
 };
 
-const Project = ({ title }) => {
+const Project = ({ title, url, desc }) => {
   const overlayStyles = `absolute h-full w-full opacity-0 hover:opacity-90 transition duration-500
     bg-grey z-30 flex flex-col justify-center items-center text-center p-16 text-deep-blue`;
   const projectTitle = title.split(" ").join("-").toLowerCase();
@@ -22,14 +22,17 @@ const Project = ({ title }) => {
 
   return (
     <motion.div variants={projectVariant} className="relative">
-      <div className={overlayStyles}>
-        <p className="text-2xl font-playfair">{title}</p>
-        <p className="mt-7">
-          Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Nulla
-          porttitor accumsan tincidunt.
-        </p>
-      </div>
-      <img src={require(`../assets/${projectTitle}.jpg`)} alt={projectTitle} />
+      <a href={url} rel="noreferrer" target="_blank">
+        <div className={overlayStyles}>
+          <p className="text-2xl font-playfair">{title}</p>
+          <p className="mt-7">{desc}</p>
+        </div>
+        <img
+          className="w-full"
+          src={require(`../assets/${projectTitle}.png`)}
+          alt={projectTitle}
+        />
+      </a>
     </motion.div>
   );
 };
@@ -75,11 +78,19 @@ const Projects = () => {
           <div className="flex justify-center text-center items-center p-10 bg-rose-800 max-w-[400px] max-h-[400px] text-2xl font-playfair font-semibold">
             PERSONAL PROJECTS
           </div>
-          <Project title="portfolio 1" />
-          <Project title="portfolio 2" />
+          <Project
+            title="admin dashboard"
+            url="https://rychowiak.github.io/admin-dashboard/"
+            desc="React Admin dashboard with material ui, data grid and dark-light mode"
+          />
+          <Project
+            title="social app"
+            url="https://rychowiak.github.io/socialMediaApp/"
+            desc="React Social media app with "
+          />
 
           {/* ROW 2 */}
-          <Project title="portfolio 3" />
+          <Project title="Book Ecommerce" desc="Ecommerce with React and strapi for storing data, coming soon..."/>
           <Project title="portfolio 4" />
           <Project title="portfolio 5" />
           {/* ROW 3 */}
